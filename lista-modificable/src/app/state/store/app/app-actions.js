@@ -2,7 +2,7 @@ import { useCallback } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
 import { ActionCreators } from 'redux-undo';
 import {
-    setLista
+    setList
 } from './app-store';
 
 const useApp = () => {
@@ -11,18 +11,27 @@ const useApp = () => {
 
     const app = useSelector(state => state.app.present, shallowEqual);
 
+    /* 
+        Function to remove the selected elements from the list
+     */
     const removeElement = useCallback(listToRemove => {
-        const newLista = app.lista.filter((el) => {
+        const newList = app.list.filter((el) => {
             return listToRemove.indexOf(`${el.id}`) < 0;
         });
-        dispatch(setLista(newLista));
-    },[app.lista, dispatch]);
+        dispatch(setList(newList));
+    },[app.list, dispatch]);
 
+     /* 
+        Function to add an element to the list
+     */
     const addElement = useCallback(element => {
-        const newLista = [...app.lista, element]
-        dispatch(setLista(newLista));
-    },[app.lista, dispatch]);
+        const newList = [...app.list, element]
+        dispatch(setList(newList));
+    },[app.list, dispatch]);
 
+     /* 
+        Function to undo the previous change
+     */
     const goBack = useCallback(() => {
         dispatch(ActionCreators.undo());
     }, [dispatch]);

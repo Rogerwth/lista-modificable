@@ -8,11 +8,13 @@ const App = () => {
     let clicks = [];
     let timeout;
 
+    /* List changes handler */
     const handleChange = useCallback(e => {
         const value = Array.from(e.target.selectedOptions, option => option.value);
         setSelected(value);
     }, [])
 
+    /* Double click handler */
     const handleDoubleClick = event => {
         clicks.push(new Date().getTime());
         window.clearTimeout(timeout);
@@ -49,7 +51,7 @@ const App = () => {
                 <button className="custom-button" onClick={() => goBack()}>Undo</button>
 
                 <select className="custom-list" onChange={(e) => handleChange(e)} name="list" id="list" multiple>
-                    {app.lista.map(el => {
+                    {app.list.map(el => {
                         return (
                           <option onClick={(e) => handleDoubleClick(e)} key={el.id} value={el.id}>{el.label}</option>
                         )

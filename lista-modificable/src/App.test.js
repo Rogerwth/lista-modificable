@@ -12,7 +12,7 @@ const store = configureStore({
 
 test('Buscar título lista', () => {
     render(<Provider store={store}><App /></Provider>);
-    const lista = screen.getByText(/My list/i);
+    const list = screen.getByText(/My list/i);
     // const add = screen.getByText(/Add/i);
     const remove = screen.getByText(/Remove/i);
     const undo = screen.getByText(/Undo/i);
@@ -22,5 +22,5 @@ test('Buscar título lista', () => {
     userEvent.click(remove);
     userEvent.click(undo);
 
-    expect(lista).toBeInTheDocument();
+    expect(list).toBeInTheDocument();
 });
