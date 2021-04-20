@@ -3,19 +3,19 @@ import { createSlice } from '@reduxjs/toolkit';
 const appSlice = createSlice({
     name: 'app',
     initialState: {
-       lista: [],
+       list: [],
        id: 0
     },
     reducers: {
-        setLista(state, action) {
-            state.lista = action.payload;
+        setList(state, action) {
+            state.list = action.payload;
             state.id = state.id += 1;
         }
     }
 });
 
 export const {
-    setLista
+    setList
 } = appSlice.actions;
 
 export default appSlice.reducer;
